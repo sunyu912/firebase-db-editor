@@ -14,8 +14,18 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
     <script>
-      function updateScore() {
-
+      // here is an example of how to update one attribute in firebase
+      // please replace the url with the id, name, and replace the data part 
+      // with score
+      function updateScore(id, name, score) {
+        $.ajax({
+          url: "https://unity3d-46471.firebaseio.com/aaaclarkproj/0000001/Score2.json", 
+          data: '89',
+          type: 'PUT',
+          success: function(result) {            
+              console.log("success")
+          }
+        });
       }
 
       function init() {
