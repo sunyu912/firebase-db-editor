@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clark Portal</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>    
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <script>
+      function updateScore() {
+
+      }
+
+      function init() {
+        $.ajax({url: "https://unity3d-46471.firebaseio.com/aaaclarkproj.json", success: function(result){            
+            $.each(result, function(key, value) {
+              console.log(key + ": " + value);
+              console.log(value.Name);
+              console.log(value.RemTime);
+              console.log(value.Score1);
+              console.log(value.Score2);
+              console.log(value.Score3);
+              console.log(value.Score4);
+              console.log(value.Score5);
+              $('#result_table tr:last').after(
+                '<tr>' +
+                '<td>' + value.Name + '</td>' + 
+                '<td>' + '<input id="score1" type="text">' + + '</input>' + '</td>' + 
+                '<td>' + '<input id="score2" type="text"></input>' + '</td>' + 
+                '<td>' + '<input id="score3" type="text"></input>' + '</td>' + 
+                '<td>' + '<input id="score4" type="text"></input>' + '</td>' + 
+                '<td>' + '<input id="score5" type="text"></input>' + '</td>' + 
+                '<td>' + value.RemTime + '</td>' + 
+                '</tr>'
+              );
+            });
+        }});        
+      }
+      init();
+    </script>    
+
+  </head>
+  <body>
+    <div id="result">
+      <table style="width:100%" id="result_table">
+        <tr>
+          <th>Name</th>
+          <th>Score1</th> 
+          <th>Score2</th> 
+          <th>Score3</th> 
+          <th>Score4</th> 
+          <th>Score5</th> 
+          <th>Time Remaining</th>
+        </tr>
+        <tr>
+          <td>Clark</td>
+          <td><input id="score1" type="text"></input><button onclick="updateScore('score1')">Update</button></td>
+          <td><input type="text"></input></td>
+          <td><input type="text"></input></td>
+          <td><input type="text"></input></td>
+          <td><input type="text"></input></td>
+          <td>500</td>
+        </tr>        
+      </table>
+    </div>    
+  </body>
+</html>
